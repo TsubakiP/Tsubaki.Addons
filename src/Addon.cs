@@ -1,13 +1,15 @@
-﻿
+﻿// Author: Viyrex(aka Yuyu)
+// Contact: mailto:viyrex.aka.yuyu@gmail.com
+// Github: https://github.com/0x0001F36D
 
 namespace Tsubaki.Addons
 {
     using System.Reflection;
 
-    public abstract class Addon  : IAddon
+    public abstract class Addon : IAddon
     {
-        public string Name { get; }
         public string[] Keywords { get; }
+        public string Name { get; }
 
         protected Addon()
         {
@@ -19,7 +21,7 @@ namespace Tsubaki.Addons
                 {
                     this.Keywords = metadata.Keywords;
                 }
-                else 
+                else
                 {
                     throw new AddonInitializationException(t, "The Keywords is empty so this Addon will not be invoked");
                 }
@@ -28,17 +30,15 @@ namespace Tsubaki.Addons
             {
                 throw new AddonInitializationException(t, $"The { nameof(AddonAttribute)} not depend on type {t.Name}, Add the attribute can improve this exception");
             }
-            
+
             this.OnInitialize();
         }
 
-        /// <summary>
-        /// 在初始化時引發
-        /// </summary>
-        protected virtual void OnInitialize()
+        bool IAddon.Execute(string[] args, out object callback)
         {
+            callback = null;
+            return this.ExecuteImpl(args, ref callback);
         }
-
 
         /// <summary>
         /// 執行內容實做
@@ -48,12 +48,11 @@ namespace Tsubaki.Addons
         /// <returns></returns>
         protected abstract bool ExecuteImpl(string[] args, ref object callback);
 
-        bool IAddon.Execute(string[] args, out object callback)
+        /// <summary>
+        /// 在初始化時引發
+        /// </summary>
+        protected virtual void OnInitialize()
         {
-            callback = null;
-            return this.ExecuteImpl(args ,ref callback);
         }
-
     }
-    
 }

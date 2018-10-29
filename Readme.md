@@ -1,4 +1,8 @@
 # Overview 
-This project provide the add-on system for Tsubaki.
+This project provides the add-on system for Tsubaki.
+
+
+# Implementation
+
 
 

@@ -1,4 +1,6 @@
-﻿
+﻿// Author: Viyrex(aka Yuyu)
+// Contact: mailto:viyrex.aka.yuyu@gmail.com
+// Github: https://github.com/0x0001F36D
 
 namespace Tsubaki.Addons
 {
@@ -6,14 +8,14 @@ namespace Tsubaki.Addons
 
     internal sealed class AddonInitializationException : Exception
     {
-        internal AddonInitializationException(Type type, string reason):base(reason)
+        public string Reason { get; }
+
+        public Type Type { get; }
+
+        internal AddonInitializationException(Type type, string reason) : base(reason)
         {
             this.Type = type;
             this.Reason = reason;
         }
-
-        public Type Type { get; }
-        public string Reason { get; }
     }
-    
 }
