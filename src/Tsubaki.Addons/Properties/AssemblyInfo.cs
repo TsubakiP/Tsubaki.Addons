@@ -22,6 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: Guid("1c2356a5-c4f7-47f3-8506-cf7ebc753193")]
 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.10.6879")]
-[assembly: AssemblyFileVersion("2018.11.1.0014")]
+[assembly: AssemblyVersion("1.2.13.6879")]
+[assembly: AssemblyFileVersion("1.2.13.6879")]
+[assembly: AssemblyInformationalVersion("2018.11.1.0048")]
 [assembly: AssemblyKeyFile("Tsubaki.Addons.snk")]

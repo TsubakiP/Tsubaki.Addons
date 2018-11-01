@@ -12,8 +12,17 @@ namespace Tsubaki.Addons.Hosting
     using Tsubaki.Addons.Hosting.Internal;
     using Tsubaki.Addons.Interfaces;
 
+    /// <summary>
+    /// The add-ons provider.
+    /// </summary>
     public sealed class AddonProvider
     {
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
         public static AddonProvider Provider
         {
             get
@@ -56,6 +65,13 @@ namespace Tsubaki.Addons.Hosting
 #endif
         }
 
+        /// <summary>
+        /// Executes the specified domains.
+        /// </summary>
+        /// <param name="domains">The domains.</param>
+        /// <param name="args">The arguments.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns></returns>
         public ExecutedResult Execute(string[] domains, string[] args, out object callback)
         {
             var r = default(ExecutedResult);
@@ -117,7 +133,7 @@ namespace Tsubaki.Addons.Hosting
         /// <param name="advanceSearch">if set to <c>true</c> [advance search].</param>
         /// <returns></returns>
         /// <exception cref="System.ArgumentException">message - name</exception>
-        /// <exception cref="Tsubaki.Addons.Hosting.AddonNotFoundException"></exception>
+        /// <exception cref="Hosting.Internal.AddonNotFoundException"></exception>
         public IAddon Get(string name, bool ignoreCase = false, bool advanceSearch = false)
         {
             if (string.IsNullOrEmpty(name))
@@ -142,5 +158,18 @@ namespace Tsubaki.Addons.Hosting
 
             throw new AddonNotFoundException(name);
         }
+
+        /// <summary>
+        /// Gets the <see cref="IAddon"/> with the specified name.
+        /// </summary>
+        /// <value>
+        /// The <see cref="IAddon"/>.
+        /// </value>
+        /// <param name="name">The name.</param>
+        /// <param name="ignoreCase">if set to <c>true</c> [ignore case].</param>
+        /// <param name="advanceSearch">if set to <c>true</c> [advance search].</param>
+        /// <returns></returns>
+        public IAddon this[string name, bool ignoreCase = false, bool advanceSearch = false]
+            => this.Get(name,ignoreCase,advanceSearch);
     }
 }
