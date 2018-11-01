@@ -20,26 +20,32 @@ namespace Tsubaki.Addons
     [Guid("8A984DF7-08AB-4ACF-A308-758697A1A0BE")]
     public sealed class AddonAttribute : ExportAttribute, IAddonMetadata
     {
+        /// <summary>
+        /// The name of the add-ons
+        /// </summary>
+        public string Name = null;
 
-#pragma warning disable 1591
-
+        /// <summary>
+        /// Gets the domains.
+        /// </summary>
+        /// <value>The domains.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] Keywords { get; }
+        public string[] Domains { get; }
 
+        /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>The identifier.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Name { get; }
-
-#pragma warning restore 1591
+        public string Id => this.Name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddonAttribute"/> class.
         /// </summary>
-        /// <param name="AddonName">Name of the addon.</param>
-        /// <param name="keywords">The keywords.</param>
-        public AddonAttribute(string AddonName, params string[] keywords) : base(typeof(IAddon))
+        /// <param name="domains">The domains.</param>
+        public AddonAttribute(params string[] domains) : base(typeof(IAddon))
         {
-            this.Name = AddonName;
-            this.Keywords = keywords;
+            this.Domains = domains;
         }
     }
 }

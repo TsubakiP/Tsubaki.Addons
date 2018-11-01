@@ -52,13 +52,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Tsubaki.Addons.csproj">
+    <ProjectReference Include="..\..\src\Tsubaki.Addons.Hosting\Tsubaki.Addons.Hosting.csproj">
+      <Project>{4E813BE1-D07E-49D9-8405-AAB38587B796}</Project>
+      <Name>Tsubaki.Addons.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Tsubaki.Addons\Tsubaki.Addons.csproj">
       <Project>{1c2356a5-c4f7-47f3-8506-cf7ebc753193}</Project>
       <Name>Tsubaki.Addons</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Tsubaki.Addons.Driver\Tsubaki.Addons.Driver.csproj">
-      <Project>{4e813be1-d07e-49d9-8405-aab38587b796}</Project>
-      <Name>Tsubaki.Addons.Driver</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

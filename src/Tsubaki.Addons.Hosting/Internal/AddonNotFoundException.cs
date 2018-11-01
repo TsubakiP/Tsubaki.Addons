@@ -2,7 +2,7 @@
 // Contact: mailto:viyrex.aka.yuyu@gmail.com
 // Github: https://github.com/0x0001F36D
 
-namespace Tsubaki.Addons.Driver
+namespace Tsubaki.Addons.Hosting.Internal
 {
     using System;
 

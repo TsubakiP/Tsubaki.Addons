@@ -19,6 +19,11 @@ namespace Tsubaki.Addons
     public abstract class Addon : IAddon
     {
         /// <summary>
+        /// Gets the domains.
+        /// </summary>
+        public string[] Domains { get; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="IAddon"/> is enabled.
         /// </summary>
         /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
@@ -36,11 +41,6 @@ namespace Tsubaki.Addons
         }
 
         /// <summary>
-        /// Gets the keywords.
-        /// </summary>
-        public string[] Keywords { get; }
-
-        /// <summary>
         /// Gets the name.
         /// </summary>
         public string Name { get; }
@@ -54,14 +54,14 @@ namespace Tsubaki.Addons
             var t = this.GetType();
             if (t.GetCustomAttribute<AddonAttribute>() is IAddonMetadata metadata)
             {
-                this.Name = metadata.Name ?? t.Name;
-                if (metadata.Keywords is string[] keys && keys.Length > 0)
+                this.Name = metadata.Id ?? t.Name;
+                if (metadata.Domains is string[] keys && keys.Length > 0)
                 {
-                    this.Keywords = metadata.Keywords;
+                    this.Domains = metadata.Domains;
                 }
                 else
                 {
-                    throw new AddonInitializationException(t, "The Keywords is empty so this Addon will not be invoked");
+                    throw new AddonInitializationException(t, "The domains is empty so this Addon will not be invoked");
                 }
             }
             else

@@ -5,8 +5,7 @@
 namespace Tsubaki.Addons.ConsoleTest
 {
     using System;
-
-    using Tsubaki.Addons.Driver;
+    using Tsubaki.Addons.Hosting;
 
     internal class MainClass
     {
@@ -22,7 +21,7 @@ namespace Tsubaki.Addons.ConsoleTest
 
             Console.Write("input T/F: ");
             var c = Console.ReadKey().Key;
-            AddonProvider.Provider["Mock"].Enabled = c == ConsoleKey.T;
+            AddonProvider.Provider.Get("Mock").Enabled = c == ConsoleKey.T;
             Console.ReadKey();
             return;
         }
