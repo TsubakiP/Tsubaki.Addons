@@ -10,6 +10,7 @@ namespace Tsubaki.Addons
 
     using Tsubaki.Addons.Interfaces;
     using Tsubaki.Addons.Internal;
+    using Tsubaki.Configuration;
 
     /// <summary>
     /// Provides basic features for the add-on.
@@ -31,12 +32,12 @@ namespace Tsubaki.Addons
         {
             get
             {
-                return Settings.Default.Enabled;
+                return this._cfg.Enabled;
             }
             set
             {
-                Settings.Default.Enabled = value;
-                Settings.Default.Save();
+                this._cfg.Enabled = value;
+                this._cfg.Save() ;
             }
         }
 
@@ -69,8 +70,13 @@ namespace Tsubaki.Addons
                 throw new AddonInitializationException(t, $"The { nameof(AddonAttribute)} not depend on type {t.Name}, Add the attribute can improve this exception");
             }
 
+            this._cfg = Config.Load();
+
             this.OnInitialize();
         }
+
+        private Config _cfg;
+
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         bool? IAddon.Execute(string[] args, out object callback)
@@ -96,5 +102,14 @@ namespace Tsubaki.Addons
         protected virtual void OnInitialize()
         {
         }
+
+
+
+        private class Config : SelfDisciplined<Config>
+        {
+            public bool Enabled { get; set; }
+        }
     }
+
+    
 }
